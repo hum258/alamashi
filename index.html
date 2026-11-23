@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#D4AF37">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>عالماشي — مطعم الهناء للفلافل</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FAF7F2; --card:#FFFFFF; --ink:#2C2416; --muted:#7a6d58; --line:#EAE0C8;
+  --gold:#D4AF37; --gold-d:#B8860B; --chip:#F3ECDA; --shadow:0 2px 12px rgba(44,36,22,.08);
+  --shine:linear-gradient(110deg,#B8860B 0%,#D4AF37 35%,#F6E27A 50%,#D4AF37 65%,#B8860B 100%);
+}
+[data-theme="dark"]{
+  --bg:#15110A; --card:#221C10; --ink:#F4EEDC; --muted:#B3A58A; --line:#3A301B;
+  --chip:#2E2616; --shadow:0 2px 12px rgba(0,0,0,.4);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{background:var(--bg);color:var(--ink);font-family:'Cairo','Tajawal',system-ui,sans-serif;transition:background .25s,color .25s}
+body{min-height:100vh;padding-bottom:calc(130px + env(safe-area-inset-bottom,0px))}
+button{font-family:inherit;border:0;cursor:pointer;color:inherit;background:none}
+.hidden{display:none!important}
+
+.gold{background:var(--shine);background-size:250% 100%;color:#2C2416;font-weight:900;
+  box-shadow:0 6px 16px rgba(184,134,11,.35),inset 0 1px 0 rgba(255,255,255,.55);
+  animation:shine 4s linear infinite;transition:transform .12s}
+.gold:active{transform:scale(.95)}
+@keyframes shine{0%{background-position:150% 0}100%{background-position:-100% 0}}
+
+/* الترحيب */
+#welcome{position:fixed;inset:0;z-index:50;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:32px 28px;padding-top:calc(32px + env(safe-area-inset-top,0px));padding-bottom:calc(32px + env(safe-area-inset-bottom,0px))}
+.emblem{width:112px;height:112px;border-radius:50%;background:var(--shine);background-size:250% 100%;animation:shine 4s linear infinite;
+  display:grid;place-items:center;box-shadow:0 12px 30px rgba(184,134,11,.4);margin-bottom:22px}
+.emblem svg{width:56px;height:56px;stroke:#2C2416;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.logo{font-size:68px;font-weight:900;line-height:1.15;background:var(--shine);background-size:250% 100%;
+  -webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 4s linear infinite}
+.slogan{font-size:17px;color:var(--gold-d);font-weight:700;margin-top:6px}
+.orn{width:70px;height:3px;border-radius:3px;background:var(--gold);margin:26px 0}
+.welcome-text{font-size:19px;line-height:1.9;max-width:320px}
+.welcome-text b{color:var(--gold-d)}
+.start{margin-top:34px;width:100%;max-width:340px;padding:20px;border-radius:20px;font-size:22px}
+
+/* الرأس */
+header{position:sticky;top:0;z-index:20;background:var(--bg);padding:calc(12px + env(safe-area-inset-top,0px)) 20px 12px;
+  display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+.wrap{max-width:620px;margin:0 auto;width:100%}
+.hd{display:flex;align-items:center;justify-content:space-between;width:100%;max-width:620px;margin:0 auto}
+.brand{font-size:28px;font-weight:900;color:var(--gold-d);line-height:1.1}
+.brand small{display:block;font-size:13px;font-weight:500;color:var(--muted)}
+.gear{width:48px;height:48px;border-radius:50%;background:var(--card);border:1px solid var(--line);display:grid;place-items:center}
+.gear svg{width:24px;height:24px;stroke:var(--ink);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+
+/* القائمة */
+main{max-width:620px;margin:0 auto;padding:8px 16px}
+h2{font-size:22px;font-weight:900;margin:30px 4px 14px;display:flex;align-items:center;gap:10px}
+h2::before{content:"";width:5px;height:24px;border-radius:3px;background:var(--gold)}
+.item{background:var(--card);border-radius:22px;padding:18px 16px;margin-bottom:14px;display:flex;align-items:center;gap:14px;
+  box-shadow:var(--shadow);border:2px solid transparent;transition:border-color .2s}
+.item.on{border-color:var(--gold)}
+.ico{width:62px;height:62px;border-radius:50%;border:2px solid var(--gold);display:grid;place-items:center;flex:none;color:var(--gold-d)}
+.ico svg{width:34px;height:34px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.info{flex:1;min-width:0}
+.name{font-size:19px;font-weight:700;line-height:1.4}
+.p-new{font-size:16px;font-weight:900;color:var(--gold-d);margin-top:2px}
+.p-old{font-size:13px;color:var(--muted)}
+.qty{display:flex;align-items:center;gap:10px;flex:none}
+.qb{width:46px;height:46px;border-radius:50%;font-size:28px;font-weight:900;line-height:1;display:grid;place-items:center}
+.qb.minus{background:var(--chip);color:var(--gold-d);box-shadow:none;animation:none}
+.qn{min-width:24px;text-align:center;font-size:21px;font-weight:900}
+
+/* الشريط السفلي */
+#bar{position:fixed;inset:auto 0 0 0;z-index:30;background:var(--card);border-top:1px solid var(--line);box-shadow:0 -8px 24px rgba(0,0,0,.08);
+  border-radius:26px 26px 0 0;padding:14px 16px calc(14px + env(safe-area-inset-bottom,0px))}
+.bar-in{max-width:620px;margin:0 auto}
+.sum{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;padding:0 4px}
+.cnt{font-size:15px;color:var(--muted);font-weight:700}
+.tot{font-size:21px;font-weight:900;text-align:left}
+.tot small{display:block;font-size:12.5px;color:var(--muted);font-weight:500}
+.send{width:100%;padding:17px;border-radius:18px;font-size:19px;display:flex;align-items:center;justify-content:center;gap:10px}
+.send:disabled{filter:grayscale(.7) opacity(.5);animation:none;box-shadow:none}
+
+/* النوافذ */
+.modal{position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.55);display:flex;align-items:flex-end;justify-content:center}
+.sheet{background:var(--bg);width:100%;max-width:560px;border-radius:28px 28px 0 0;padding:22px 20px calc(24px + env(safe-area-inset-bottom,0px));max-height:90vh;overflow:auto}
+.sheet h3{font-size:22px;font-weight:900;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center}
+.x{width:40px;height:40px;border-radius:50%;background:var(--chip);font-size:17px}
+.row{background:var(--card);border-radius:18px;padding:16px;margin-bottom:12px;box-shadow:var(--shadow)}
+.row .lbl{font-weight:700;margin-bottom:10px}
+.seg{display:flex;gap:8px}
+.seg button{flex:1;padding:13px 6px;border-radius:14px;background:var(--chip);font-weight:700;font-size:15px}
+.seg button.act{background:var(--shine);color:#2C2416;box-shadow:0 3px 10px rgba(184,134,11,.3)}
+.act-btn{width:100%;padding:15px;border-radius:16px;font-size:16px;font-weight:700;background:var(--chip)}
+.act-btn.gold{background:var(--shine)}
+.how{font-size:16px;line-height:2}
+.how span{color:var(--gold-d);font-weight:900}
+
+/* التأكيد */
+#done{position:fixed;inset:0;z-index:70;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:32px}
+#done .big{width:96px;height:96px;border-radius:50%;background:var(--shine);display:grid;place-items:center;font-size:48px;color:#2C2416;font-weight:900;animation:pop .5s}
+@keyframes pop{0%{transform:scale(.3);opacity:0}70%{transform:scale(1.12)}100%{transform:scale(1);opacity:1}}
+#done h1{font-size:27px;font-weight:900;margin:20px 0 10px;color:var(--gold-d)}
+#done p{font-size:18px;line-height:1.9;max-width:330px}
+#done button{margin-top:28px;width:100%;max-width:320px;padding:16px;border-radius:18px;font-size:18px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+</head>
+<body>
+
+<script>
+  // ضع رقم واتساب هنا بصيغة دولية بدون + أو صفر (حالياً رقمك، لاحقاً رقم المحل)
+  const WHATSAPP_NUMBER = "963990424380";
+  const SUPPORT_NUMBER  = "963990424380"; // رقم الدعم / صاحب التطبيق
+  const RESTAURANT = "مطعم الهناء";
+  const OLD_FACTOR = 100; // 1 جديدة = 100 قديمة
+</script>
+
+<!-- شاشة الترحيب -->
+<section id="welcome">
+  <div class="emblem">
+    <svg viewBox="0 0 24 24"><path d="M5 8h14l-1.2 11.2a1.5 1.5 0 0 1-1.5 1.3H7.7a1.5 1.5 0 0 1-1.5-1.3z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/><path d="m9.5 14 1.8 1.8L15 12"/></svg>
+  </div>
+  <div class="logo">عالماشي</div>
+  <div class="slogan">اطلب قبل ما توصل.. واستلم بدون انتظار</div>
+  <div class="orn"></div>
+  <p class="welcome-text">أهلاً بك في <b>مطعم الهناء</b>..<br>جهّز طلبك بضغطة زر واستلمه فوراً بدون طابور</p>
+  <button class="gold start" id="startBtn">ابدأ الطلب الآن</button>
+</section>
+
+<header>
+  <div class="hd">
+    <div class="brand">عالماشي<small>مطعم الهناء للفلافل</small></div>
+    <button class="gear" id="gearBtn" aria-label="الإعدادات">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="menu"></main>
+
+<div id="bar">
+  <div class="bar-in">
+    <div class="sum">
+      <div class="cnt" id="cnt">لم تختر شيئاً بعد</div>
+      <div class="tot" id="tot"></div>
+    </div>
+    <button class="gold send" id="sendBtn" disabled>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="#2C2416"><path d="M12.04 2a9.9 9.9 0 0 0-8.4 15.1L2 22l5-1.6A9.9 9.9 0 1 0 12.04 2zm5.7 14c-.24.67-1.4 1.28-1.93 1.33-.5.05-1.12.07-1.8-.11-.42-.13-.95-.31-1.64-.6-2.9-1.25-4.8-4.17-4.94-4.37-.14-.19-1.18-1.57-1.18-3s.75-2.13 1.02-2.42c.26-.29.57-.36.76-.36h.55c.18 0 .42-.07.65.5.24.58.8 2 .87 2.14.07.14.12.31.02.5-.1.19-.14.31-.28.48-.14.17-.3.38-.42.5-.14.14-.29.3-.12.58.17.29.74 1.22 1.6 1.98 1.1.98 2.03 1.28 2.32 1.42.29.14.46.12.63-.07.17-.19.72-.84.91-1.13.19-.29.38-.24.65-.14.26.1 1.68.79 1.97.94.29.14.48.22.55.34.07.12.07.7-.17 1.37z"/></svg>
+      إرسال الطلب عبر واتساب
+    </button>
+  </div>
+</div>
+
+<!-- الإعدادات -->
+<div class="modal hidden" id="settings">
+  <div class="sheet">
+    <h3>الإعدادات <button class="x" id="closeSet">✕</button></h3>
+    <div class="row">
+      <div class="lbl">المظهر</div>
+      <div class="seg">
+        <button data-theme-btn="light">فاتح</button>
+        <button data-theme-btn="dark">ليلي</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="lbl">عرض الأسعار</div>
+      <div class="seg">
+        <button data-mode="both">الجديدة + القديمة</button>
+        <button data-mode="new">الجديدة فقط</button>
+      </div>
+    </div>
+    <div class="row"><button class="act-btn" id="clearBtn">تصفير السلة</button></div>
+    <div class="row how">
+      <div class="lbl">طريقة العمل</div>
+      <span>اطلب</span> ← <span>انتظر رسالة التأكيد بالوقت</span> ← <span>استلم بدون دور</span>
+    </div>
+    <button class="act-btn gold" id="supportBtn">تواصل مع الدعم / صاحب التطبيق</button>
+  </div>
+</div>
+
+<!-- التأكيد -->
+<section id="done" class="hidden">
+  <div class="big">✓</div>
+  <h1>تم تجهيز طلبك للإرسال!</h1>
+  <p>بمجرد رد المحل على واتساب بمدة التجهيز (مثلاً 20-30 دقيقة)، يمكنك التوجه للاستلام مباشرة.</p>
+  <button class="gold" id="backBtn">العودة للقائمة</button>
+</section>
+
+<script>
+// أيقونات خطية أنيقة
+const IC = {
+  disc:  '<circle cx="12" cy="12" r="8"/><circle cx="9" cy="10" r=".7" fill="currentColor"/><circle cx="14" cy="9" r=".7" fill="currentColor"/><circle cx="15" cy="14" r=".7" fill="currentColor"/><circle cx="10" cy="15" r=".7" fill="currentColor"/>',
+  wrap:  '<path d="M4 11c0-3.5 3.6-6 8-6s8 2.5 8 6z"/><path d="M4 14.5c2 1 4 1 6 0s4-1 6 0 3 .5 4 0"/><path d="M5 18c0 1 3 2 7 2s7-1 7-2v-1.5H5z"/>',
+  fries: '<path d="M6 10h12l-1.5 10h-9z"/><path d="M8.5 10V5M11 10V3.5M13.5 10V4.5M16 10V6"/>',
+  friesF:'<path d="M5 12h10l-1.2 8H6.2z"/><path d="M7 12V7M9.5 12V5.5M12 12V7"/><circle cx="18" cy="16" r="3.2"/>',
+  friesD:'<path d="M4 11h9l-1 9H5z"/><path d="M6 11V6M8.5 11V4.5M11 11V6"/><path d="M14 13h6l-.8 7h-4.4z"/><path d="M16 13V9M18 13V8"/>',
+  cup:   '<path d="M7 5h10l-1.3 15H8.3z"/><path d="M7.4 9.5h9.2"/>',
+  can:   '<rect x="8" y="4" width="8" height="16" rx="2"/><path d="M8 8h8M8 16h8"/>',
+  bottle:'<path d="M10 3h4v3l2 3v11H8V9l2-3z"/><path d="M8 13h8"/>'
+};
+const MENU = [
+  { section:"سندويشات", items:[
+    {id:"s1", name:"سندويشة فلافل", icon:"wrap",   price:125},
+    {id:"s2", name:"سندويشة بطاطا", icon:"fries",  price:150},
+    {id:"s3", name:"بطاطا وفلافل",  icon:"friesF", price:175},
+    {id:"s4", name:"بطاطا دبل",     icon:"friesD", price:200},
+  ]},
+  { section:"فرط", items:[
+    {id:"f1", name:"قرص فلافل", icon:"disc", price:5},
+  ]},
+  { section:"مشروبات", items:[
+    {id:"d1", name:"لبن عيران",          icon:"cup",    price:50},
+    {id:"d2", name:"كولا صغيرة",         icon:"can",    price:50},
+    {id:"d3", name:"كولا 1 لتر (بيبسي)", icon:"bottle", price:90},
+  ]},
+];
+const ALL = MENU.flatMap(s=>s.items);
+const cart = {};
+let mode="both", theme="light";
+try{ mode=localStorage.getItem("priceMode")||"both"; theme=localStorage.getItem("theme")||"light"; }catch(e){}
+
+const $ = id => document.getElementById(id);
+const fmt = n => n.toLocaleString("en-US");
+
+function render(){
+  $("menu").innerHTML = MENU.map(s=>`
+    <h2>${s.section}</h2>
+    ${s.items.map(i=>`
+      <div class="item" id="it-${i.id}">
+        <div class="ico"><svg viewBox="0 0 24 24">${IC[i.icon]}</svg></div>
+        <div class="info">
+          <div class="name">${i.name}</div>
+          <div class="p-new">${fmt(i.price)} ل.س جديدة</div>
+          ${mode==="both"?`<div class="p-old">(${fmt(i.price*OLD_FACTOR)} قديمة)</div>`:""}
+        </div>
+        <div class="qty">
+          <button class="gold qb" data-add="${i.id}" aria-label="زيادة">+</button>
+          <span class="qn" id="q-${i.id}">0</span>
+          <button class="qb minus" data-sub="${i.id}" aria-label="إنقاص">−</button>
+        </div>
+      </div>`).join("")}
+  `).join("");
+  update();
+}
+
+function update(){
+  let count=0,total=0;
+  ALL.forEach(i=>{
+    const q=cart[i.id]||0; count+=q; total+=q*i.price;
+    const el=$("q-"+i.id); if(el) el.textContent=q;
+    const card=$("it-"+i.id); if(card) card.classList.toggle("on",q>0);
+  });
+  $("cnt").textContent = count ? `${count} قطعة مختارة` : "لم تختر شيئاً بعد";
+  $("tot").innerHTML = count ? `${fmt(total)} ل.س جديدة`+(mode==="both"?`<small>(${fmt(total*OLD_FACTOR)} قديمة)</small>`:"") : "";
+  $("sendBtn").disabled = !count;
+}
+
+document.addEventListener("click",e=>{
+  const a=e.target.closest("[data-add]"), s=e.target.closest("[data-sub]");
+  if(a){ cart[a.dataset.add]=(cart[a.dataset.add]||0)+1; update(); }
+  if(s){ const k=s.dataset.sub; if(cart[k]){ cart[k]--; if(!cart[k]) delete cart[k]; update(); } }
+});
+
+function syncUI(){
+  document.documentElement.dataset.theme=theme;
+  document.querySelectorAll("[data-mode]").forEach(b=>b.classList.toggle("act",b.dataset.mode===mode));
+  document.querySelectorAll("[data-theme-btn]").forEach(b=>b.classList.toggle("act",b.dataset.themeBtn===theme));
+}
+document.querySelectorAll("[data-mode]").forEach(b=>b.onclick=()=>{
+  mode=b.dataset.mode; try{localStorage.setItem("priceMode",mode)}catch(e){} syncUI(); render();
+});
+document.querySelectorAll("[data-theme-btn]").forEach(b=>b.onclick=()=>{
+  theme=b.dataset.themeBtn; try{localStorage.setItem("theme",theme)}catch(e){} syncUI();
+});
+
+$("startBtn").onclick=()=>$("welcome").classList.add("hidden");
+$("gearBtn").onclick=()=>$("settings").classList.remove("hidden");
+$("closeSet").onclick=()=>$("settings").classList.add("hidden");
+$("settings").onclick=e=>{ if(e.target.id==="settings") $("settings").classList.add("hidden"); };
+$("clearBtn").onclick=()=>{ for(const k in cart) delete cart[k]; update(); $("settings").classList.add("hidden"); };
+$("supportBtn").onclick=()=>{
+  window.open(`https://wa.me/${SUPPORT_NUMBER}?text=${encodeURIComponent("مرحباً، أود التواصل بخصوص تطبيق عالماشي.")}`,"_blank");
+};
+
+$("sendBtn").onclick=()=>{
+  const lines=[];
+  ALL.forEach(i=>{ const q=cart[i.id]; if(q) lines.push(`▫️ ${i.name} × ${q}`); });
+  if(!lines.length) return;
+  const msg =
+`مرحباً ${RESTAURANT} 🌹
+أود تقديم طلب استلام سريع:
+
+${lines.join("\n")}
+
+كم الوقت اللازم لتجهيز الطلب؟ شكراً لكم.`;
+  window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`,"_blank");
+  $("done").classList.remove("hidden");
+};
+$("backBtn").onclick=()=>{ $("done").classList.add("hidden"); for(const k in cart) delete cart[k]; update(); };
+
+syncUI(); render();
+if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));}
+</script>
+</body>
+</html>
